@@ -1,7 +1,7 @@
 import binascii
 
 # define message and function
-message = b'itri.ap-mic.com'
+message = b'The quick brown fox jumps over the lazy dog'
 message_length = len(message) * 8
 left_rotate = lambda n, b: ((n << b) | (n >> (32 - b))) & 0xffffffff
 
