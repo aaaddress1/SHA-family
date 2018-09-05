@@ -36,7 +36,7 @@ chunks = [message[i:i+64] for i in range(0, len(message), 64)]
 for chunk in chunks:
 	# break chuck into sixteen 32bits big-endian words
 	w = [int(binascii.hexlify(chunk[i:i+4]), 16) for i in range(0, len(chunk), 4)]
-	# extend 16 words to 80 words
+	# extend 16 words to 64 words
 	for i in range(16, 64):
 		s0 = right_rotate(w[i-15], 7) ^ right_rotate(w[i-15], 18) ^ (w[i-15] >> 3) #right_rotate(w[i-15], 3)
 		s1 = right_rotate(w[i-2], 17) ^ right_rotate(w[i-2], 19) ^ (w[i-2] >> 10) #right_rotate(w[i-2], 10)
