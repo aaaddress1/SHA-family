@@ -2,6 +2,7 @@ import binascii
 
 message = b'The quick brown fox jumps over the lazy dog'
 message_length = len(message) * 8
+hex_zfill = lambda h, n: hex(h)[2:].zfill(n)
 right_rotate = lambda n, b: ((n >> b) | (n << (32 - b))) & 0xffffffff
 
 # initialization variables
@@ -29,7 +30,7 @@ k = [
 # pre-processing
 message += b'\x80'
 message += b'\x00' * ((56 - len(message) % 64) % 64)
-message += binascii.unhexlify(hex(message_length)[2:].zfill(16))
+message += binascii.unhexlify(hex_zfill(message_length, 16))
 
 # break the message in 512bits chunks
 chunks = [message[i:i+64] for i in range(0, len(message), 64)]
@@ -74,5 +75,5 @@ for chunk in chunks:
 	h7 = (h7 + h) & 0xffffffff
 
 # produce the final hash value
-digest = hex(h0)[2:] + hex(h1)[2:] + hex(h2)[2:] + hex(h3)[2:] + hex(h4)[2:] + hex(h5)[2:] + hex(h6)[2:]
+digest = hex_zfill(h0, 8) + hex_zfill(h1, 8) + hex_zfill(h2, 8) + hex_zfill(h3, 8) + hex_zfill(h4, 8) + hex_zfill(h5, 8) + hex_zfill(h6, 8)
 print(digest)

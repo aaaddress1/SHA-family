@@ -6,14 +6,14 @@ hex_zfill = lambda h, n: hex(h)[2:].zfill(n)
 right_rotate = lambda n, b: ((n >> b) | (n << (64 - b))) & 0xffffffffffffffff
 
 # initialization variables
-h0 = 0x6a09e667f3bcc908
-h1 = 0xbb67ae8584caa73b
-h2 = 0x3c6ef372fe94f82b
-h3 = 0xa54ff53a5f1d36f1
-h4 = 0x510e527fade682d1
-h5 = 0x9b05688c2b3e6c1f
-h6 = 0x1f83d9abfb41bd6b
-h7 = 0x5be0cd19137e2179
+h0 = 0xcbbb9d5dc1059ed8
+h1 = 0x629a292a367cd507
+h2 = 0x9159015a3070dd17
+h3 = 0x152fecd8f70e5939
+h4 = 0x67332667ffc00b31
+h5 = 0x8eb44a8768581511
+h6 = 0xdb0c2e0d64f98fa7
+h7 = 0x47b5481dbefa4fa4
 
 # initialize table of round constants
 k = [
@@ -84,5 +84,5 @@ for chunk in chunks:
 	h7 = (h7 + h) & 0xffffffffffffffff
 
 # produce the final hash value
-digest = hex_zfill(h0, 16) + hex_zfill(h1, 16) + hex_zfill(h2, 16) + hex_zfill(h3, 16) + hex_zfill(h4, 16) + hex_zfill(h5, 16) + hex_zfill(h6, 16) + hex_zfill(h7, 16)
+digest = hex_zfill(h0, 16) + hex_zfill(h1, 16) + hex_zfill(h2, 16) + hex_zfill(h3, 16) + hex_zfill(h4, 16) + hex_zfill(h5, 16)
 print(digest)
