@@ -36,7 +36,7 @@ for chunk in chunks:
 	# main loop
 	for i in range(80):
 		if 0 <= i <= 19:
-			f = d ^ (b & (c ^ d))
+			f = (b & c) | (~b & d)
 			k = 0x5A827999
 		elif 20 <= i <= 39:
 			f = b ^ c ^ d
